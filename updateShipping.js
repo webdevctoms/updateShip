@@ -3,19 +3,39 @@ function UpdateShip(shipButtonName){
 	this.upShip = 8;
 	console.log(this.shippingButtons);
 	this.updatePrice();
-	this.initButtons();
+	this.initValues();
 
 }
 
-UpdateShip.prototype.initButtons = function(){
+UpdateShip.prototype.initValues = function(){
 	
 	for(let i = 0;i < this.shippingButtons.length; i++){
-		this.shippingButtons[i].onclick = null;
-		this.shippingButtons[i].addEventListener("click",function(e){		
-			this.radioClicked(e);
-		}.bind(this));
+		if(this.shippingButtons[i].attributes.checked){
+			console.log("button checked: ",this.shippingButtons[i]);
+			this.setValues(this.shippingButtons[i]);
+		}
+
 	}
-}
+};
+
+UpdateShip.prototype.setValues = function(button){
+	
+	//split by "long" dash
+	let carrier = button.nextSibling.textContent.split("–")[0].trim();
+	let price = button.nextSibling.textContent.split("–")[1].trim().replace("$","");
+	let rateSystem;
+	if(carrier.search(/ups/gi) !== -1){
+		rateSystem = "ups";
+	}
+	else if(carrier.search(/fedex/gi) !== -1){
+		rateSystem = "fedex";
+	}
+	else{
+		rateSystem = "other";
+	}
+	console.log("clicked", carrier, price,rateSystem);
+	this.setShip(price,carrier,rateSystem);
+};
 
 UpdateShip.prototype.updatePrice = function(){
 	
@@ -30,25 +50,6 @@ UpdateShip.prototype.updatePrice = function(){
 	}
 }
 
-UpdateShip.prototype.radioClicked = function(event){
-	
-	//let value = event.currentTarget.value;
-	//split by "long" dash
-	let carrier = event.currentTarget.nextSibling.textContent.split("–")[0].trim();
-	let price = event.currentTarget.nextSibling.textContent.split("–")[1].trim().replace("$","");
-	let rateSystem;
-	if(carrier.search(/ups/gi) !== -1){
-		rateSystem = "ups";
-	}
-	else if(carrier.search(/fedex/gi) !== -1){
-		rateSystem = "fedex";
-	}
-	else{
-		rateSystem = "other";
-	}
-	console.log("clicked", carrier, price,rateSystem);
-	this.setShip(price,carrier,rateSystem);
-}
 
 UpdateShip.prototype.setShip = function(amount,desc,ratesystem)
 {
@@ -79,7 +80,9 @@ UpdateShip.prototype.setShip = function(amount,desc,ratesystem)
        
     }
  
-}
+};
+
+
 try{
 	let updateShip = new UpdateShip("sShipMeth");
 }
