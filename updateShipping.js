@@ -1,19 +1,26 @@
 function UpdateShip(shipButtonName){
 	this.shippingButtons = $("input[name*=" + shipButtonName +"]");
+	this.upShip = 8;
 	console.log(this.shippingButtons);
 	this.initButtons();
 }
 
 UpdateShip.prototype.initButtons = function(){
-	/*
+	
 	for(let i = 0;i < this.shippingButtons.length; i++){
-		console.log("button text: ",this.shippingButtons[i].nextSibling.textContent);
+		this.shippingButtons[i].onclick = null;
+		this.shippingButtons[i].addEventListener("click",function(e){		
+			this.radioClicked(e);
+		}.bind(this));
 	}
-	*/
-	this.shippingButtons[0].onclick = null;
-	this.shippingButtons[0].addEventListener("click",function(e){
-		console.log("clicked");
-	}.bind(this));
+}
+
+UpdateShip.prototype.radioClicked = function(event){
+	
+	let value = event.currentTarget.value;
+	//split by "long" dash
+	let carrier = event.currentTarget.nextSibling.textContent.split("–")[0].trim();
+	console.log("clicked", carrier, value);
 }
 
 let updateShip = new UpdateShip("sShipMeth");
