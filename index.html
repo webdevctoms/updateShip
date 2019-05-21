@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+	
+</head>
+<body>
+<td class="smalltext">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td>
+<script>
+function shippingSelectOnChange()
+{
+	var dropdown = document.getElementById('shippingcarrierselect');
+	document.body.style.cursor = 'wait';
+	document.location.href=''+dropdown.value; return true;
+}
+</script>
+<br>Carrier
+<select id="shippingcarrierselect" name="shippingcarrierselect" onchange="shippingSelectOnChange();" class="input">
+<option value="ups">UPS
+</option><option value="nonups" selected="">FedEx/More
+</option></select>
+
+</td></tr>
+<tr><td class="smalltext"><input type="radio" class="radio" name="sShipMeth" value="16" onclick="document.location.href='';return true;">FedEx 2Day&nbsp;–&nbsp;$31.79</td></tr>
+<tr><td class="smalltext"><input type="radio" class="radio" name="sShipMeth" value="17" checked="" onclick="document.location.href='';return true;">FedEx Ground&nbsp;–&nbsp;$10.64</td></tr>
+<tr><td class="smalltext"><input type="radio" class="radio" name="sShipMeth" value="5244" onclick="document.location.href='';return true;">Pick Up in Store&nbsp;–&nbsp;Free!</td></tr>
+<input type="hidden" name="continueclicked" value="T">
+</tbody></table>
+</td>
+<script type="text/javascript" src="updateShipping.js"></script>
+</body>
+</html>
