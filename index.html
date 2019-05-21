@@ -30,10 +30,14 @@ function shippingSelectOnChange()
 </td></tr>
 <tr><td class="smalltext"><input type="radio" class="radio" name="sShipMeth" value="16" onclick="document.location.href='';return true;">FedEx 2Day&nbsp;–&nbsp;$31.79</td></tr>
 <tr><td class="smalltext"><input type="radio" class="radio" name="sShipMeth" value="17" checked="" onclick="document.location.href='';return true;">FedEx Ground&nbsp;–&nbsp;$10.64</td></tr>
+<tr><td class="smalltext"><input type="radio" class="radio" name="sShipMeth" value="5244" onclick="document.location.href='';return true;">UPS Expedited – $19.82</td></tr>
 <tr><td class="smalltext"><input type="radio" class="radio" name="sShipMeth" value="5244" onclick="document.location.href='';return true;">Pick Up in Store&nbsp;–&nbsp;Free!</td></tr>
 <input type="hidden" name="continueclicked" value="T">
 </tbody></table>
 </td>
+<input name="custbody_newship" id="custbody_newship" type="hidden" onchange="" value="">
+<input name="custbody_ratesystem" id="custbody_ratesystem" type="hidden" onchange="" value="">
+<input name="custbody_carrier" id="custbody_carrier" type="hidden" onchange="" value="">
 <script type="text/javascript" src="updateShipping.js"></script>
 </body>
 </html>
