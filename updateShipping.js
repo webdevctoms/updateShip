@@ -34,6 +34,9 @@ UpdateShip.prototype.setValues = function(button){
 		rateSystem = "other";
 	}
 	console.log("clicked", carrier, price,rateSystem);
+	if(price === "Free!"){
+		price = 0;
+	}
 	this.setShip(price,carrier,rateSystem);
 };
 
@@ -63,10 +66,17 @@ UpdateShip.prototype.setShip = function(amount,desc,ratesystem)
 		 
 
 		$('#ordersummary_shipping td:contains("$")').html("$"+amount);
-		var ship = $('#ordersummary_shipping td:contains("$")').html();
-		if(ship.charAt(0) == '$')
-			ship = ship.substring(1,ship.length-0);
-		var totalSO =   Number(ship)  + Number(i_itemtot)  + Number(i_tax);
+		var ship = Number($('#ordersummary_shipping td:contains("$")').html().replace("$",""));
+		var itemtot = Number($('#ordersummary_itemtotal td:contains("$")').html().replace("$",""));
+		var tax = Number(0.05 * (ship + itemtot));
+		$('#ordersummary_taxgst td:contains("$")').html("$"+tax.toFixed(2));
+		//if(ship.charAt(0) == '$')
+			//ship = ship.substring(1,ship.length-0);
+		var totalSO = ship + itemtot + tax;
+		console.log("ship: ",ship,typeof ship);
+		console.log("itemtot: ",itemtot,typeof itemtot);
+		console.log("tax: ",tax,typeof tax);
+		console.log("totalSO: ",totalSO,typeof totalSO);
 		$('#ordersummary_total td:contains("$")').html("$"+parseFloat(totalSO).toFixed(2));
 		 
 
